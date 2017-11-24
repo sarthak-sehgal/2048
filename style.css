@@ -45,15 +45,41 @@ html, body {
 	width: 450px;
 	height: 450px;
 	border-radius: 5px;
+	box-sizing: border-box;
+	padding: 10px;
+	position: relative;
+}
+.grid-box {
+	height: 430px;
+	width: 430px;
+	position: absolute;
 }
 .row {
 	display: flex;
-	margin-left: 10px;
+	margin-bottom: 10px;
 }
 .box {
 	height: 100px;
 	width: 100px;
 	border-radius: 5px;
-	margin: 10px 10px 0 0;
+	margin-right: 10px;
 	background: rgba(238, 228, 218, 0.35);
+}
+.box:last-child {
+	margin-right: 0;
+}
+.row:last-child {
+	margin-bottom: 10px;
+}
+.new-tile {
+	height: 100px;
+	width: 100px;
+	border-radius: 5px;
+	margin-right: 10px;
+	position: absolute;
+	background: #eee4da;
+	text-align: center;
+	line-height: 100px;
+	font-size: 4em;
+	font-weight: bold;
 }
