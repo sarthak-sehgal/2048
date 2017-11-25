@@ -3,14 +3,9 @@ function start()
 	var gamebox = document.getElementsByClassName('game-box')[0];
 	var gridbox = document.getElementsByClassName('grid-box')[0];
 	var tiles = document.getElementsByClassName('new-tile');
-	var target_tile;
-	var target_value;
-	var target_tile1;
-	var target_value1;
-	var target_tile_l;
-	var target_value_l;
-	var target_tile1_l;
-	var target_value1_l;
+	var score_div = document.getElementsByClassName('score')[0];
+	var score=0;
+	score_div.innerHTML=score;
 	
 	document.addEventListener("keydown", keydownFunc);
 	
@@ -117,6 +112,8 @@ function start()
 						else if(flag==2)
 						{
 							grid[target][row]=grid[i][row]*2;
+							score+=grid[target][row];
+							score_div.innerHTML=score;
 							grid[i][row]=0;
 							for(k=0; k<tiles.length; k++)
 							{
@@ -189,6 +186,8 @@ function start()
 						else if(flag==2)
 						{
 							grid[target][row]=grid[i][row]*2;
+							score+=grid[target][row];
+							score_div.innerHTML=score;
 							grid[i][row]=0;
 							for(k=0; k<tiles.length; k++)
 							{
@@ -262,6 +261,8 @@ function start()
 						else if(flag==2)
 						{
 							grid[col][target]=grid[col][i]*2;
+							score+=grid[col][target];
+							score_div.innerHTML=score;
 							grid[col][i]=0;
 							for(k=0; k<tiles.length; k++)
 							{
@@ -335,6 +336,8 @@ function start()
 						else if(flag==2)
 						{
 							grid[col][target]=grid[col][i]*2;
+							score+=grid[col][target];
+							score_div.innerHTML=score;
 							grid[col][i]=0;
 							for(k=0; k<tiles.length; k++)
 							{
