@@ -55,12 +55,12 @@ function start()
 		div.className='new-tile';
 		var dig = parseInt(Math.random()*(3-1)+1)*2;
 		div.innerHTML+=dig;
-		
+		colorize(tiles.length-1);
 		// update the grid array
 		grid[x][y]=dig;
 	}
-	function keydownFunc(e) 
-	{
+	function keydownFunc(e) {
+		removeClass();
 		if(e.keyCode==39)
 		{
 			rightKeyPressed();
@@ -120,6 +120,9 @@ function start()
 								if(((target*110+10+"px")==tiles[k].style.left) && ((row*110+10+"px")==tiles[k].style.top))
 								{
 									tiles[k].innerHTML=grid[target][row];
+									colorize(k);
+									tiles[k].classList.add('anim');
+									break;
 								}
 							}
 						}
@@ -139,18 +142,17 @@ function start()
 					}
 				}
 			}
-			console.log(loop_ran);
 			if(loop_ran==99)
 				setTimeout(createTile, 400);
-			for(var i=0; i<4; i++)
-			{
-				var str="";
-				for(var j=0; j<4; j++)
-				{
-					str+=grid[j][i]+", ";
-				}
-				console.log(str+"\n");
-			}
+			// for(var i=0; i<4; i++)
+			// {
+			// 	var str="";
+			// 	for(var j=0; j<4; j++)
+			// 	{
+			// 		str+=grid[j][i]+", ";
+			// 	}
+			// 	console.log(str+"\n");
+			// }
 	}
 	function rightKeyPressed() {
 		loop_ran=0;
@@ -194,6 +196,9 @@ function start()
 								if(((target*110+10+"px")==tiles[k].style.left) && ((row*110+10+"px")==tiles[k].style.top))
 								{
 									tiles[k].innerHTML=grid[target][row];
+									colorize(k);
+									tiles[k].classList.add('anim');
+									break;
 								}
 							}
 						}
@@ -214,18 +219,8 @@ function start()
 					}
 				}
 			}
-			console.log(loop_ran);
 			if(loop_ran==99)
 				setTimeout(createTile, 400);
-			for(var i=0; i<4; i++)
-			{
-				var str="";
-				for(var j=0; j<4; j++)
-				{
-					str+=grid[j][i]+", ";
-				}
-				console.log(str+"\n");
-			}
 	}
 	function downKeyPressed() {
 		loop_ran=0;
@@ -269,6 +264,9 @@ function start()
 								if(((col*110+10+"px")==tiles[k].style.left) && ((target*110+10+"px")==tiles[k].style.top))
 								{
 									tiles[k].innerHTML=grid[col][target];
+									colorize(k);
+									tiles[k].classList.add('anim');
+									break;
 								}
 							}
 						}
@@ -289,18 +287,8 @@ function start()
 					}
 				}
 			}
-			console.log(loop_ran);
 			if(loop_ran==99)
 				setTimeout(createTile, 400);
-			for(var i=0; i<4; i++)
-			{
-				var str="";
-				for(var j=0; j<4; j++)
-				{
-					str+=grid[j][i]+", ";
-				}
-				console.log(str+"\n");
-			}
 	}
 	function upKeyPressed() {
 		loop_ran=0;
@@ -344,6 +332,9 @@ function start()
 								if(((col*110+10+"px")==tiles[k].style.left) && ((target*110+10+"px")==tiles[k].style.top))
 								{
 									tiles[k].innerHTML=grid[col][target];
+									colorize(k);
+									tiles[k].classList.add('anim');
+									break;
 								}
 							}
 						}
@@ -364,18 +355,67 @@ function start()
 					}
 				}
 			}
-			console.log(loop_ran);
 			if(loop_ran==99)
 				setTimeout(createTile, 400);
-			for(var i=0; i<4; i++)
-			{
-				var str="";
-				for(var j=0; j<4; j++)
-				{
-					str+=grid[j][i]+", ";
-				}
-				console.log(str+"\n");
-			}
+	}
+	function removeClass() {
+		for(k=0; k<tiles.length; k++)
+			tiles[k].className="new-tile";
+	}
+	function colorize(k) {
+		if(tiles[k].innerHTML==2)
+			tiles[k].style.background="#eee4da";
+		else if(tiles[k].innerHTML==4)
+			tiles[k].style.background="#ede0c8";
+		else if(tiles[k].innerHTML==8)
+		{
+			tiles[k].style.background="#f2b179";
+			tiles[k].style.color="#f9f6f2";
+		}
+		else if(tiles[k].innerHTML==16)
+		{
+			tiles[k].style.background="#f59563";
+			tiles[k].style.color="#f9f6f2";	
+		}
+		else if(tiles[k].innerHTML==32)
+		{
+			tiles[k].style.background="#f67e5f";
+			tiles[k].style.color="#f9f6f2";
+		}
+		else if(tiles[k].innerHTML==64)
+		{
+			tiles[k].style.background="#f65e3b";
+			tiles[k].style.color="#f9f6f2";
+		}
+		else if(tiles[k].innerHTML==128)
+		{
+			tiles[k].style.background="#f1d96b";
+			tiles[k].style.color="#f9f6f2";
+		}
+		else if(tiles[k].innerHTML==256)
+		{
+			tiles[k].style.background="#f2cf4d";
+			tiles[k].style.color="#f9f6f2";
+		}
+		else if(tiles[k].innerHTML==512)
+		{
+			tiles[k].style.background="#e5c12b";
+			tiles[k].style.color="#f9f6f2";
+		}
+		else if(tiles[k].innerHTML==1024)
+		{
+			tiles[k].style.background="#dfba12";
+			tiles[k].style.color="#f9f6f2";
+		}
+		else if(tiles[k].innerHTML>=2048)
+		{
+			tiles[k].style.background="#edc501";
+			tiles[k].style.color="#f9f6f2";
+		}
+	}
+	function gameOver() {
+		alert("Game over!");
+		location.reload();
 	}
 	twoRandomBoxes();
 }

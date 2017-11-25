@@ -80,7 +80,33 @@ html, body {
 	background: #eee4da;
 	text-align: center;
 	line-height: 100px;
-	font-size: 4em;
+	font-size: 40px;
 	font-weight: bold;
-	transition: 0.2s all ease-in-out;
+	transition: 0.1s all ease-in-out;
+	animation: create 0.3s ease-in-out forwards;
+}
+@keyframes create {
+	0% {
+		transform: scale(0);
+	}
+	50% {
+		transform: scale(1.1);
+	}
+	100% {
+		transform: scale(1);
+	}
+}
+.new-tile.anim {
+	animation: scale 0.3s ease-in-out forwards;
+}
+@keyframes scale {
+	0% {
+		transform: scale(1);
+	}
+	50% {
+		transform: scale(1.1);
+	}
+	100% {
+		transform: scale(1);
+	}
 }
