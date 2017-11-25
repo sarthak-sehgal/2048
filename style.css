@@ -82,4 +82,5 @@ html, body {
 	line-height: 100px;
 	font-size: 4em;
 	font-weight: bold;
+	transition: 0.2s all ease-in-out;
 }
