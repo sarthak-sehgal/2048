@@ -70,10 +70,17 @@ function start()
 		{
 			rightKeyPressed();
 		}
-
-		if(e.keyCode==37)
+		else if(e.keyCode==37)
 		{
 			leftKeyPressed();
+		}
+		else if(e.keyCode==40)
+		{
+			downKeyPressed();
+		}
+		else if(e.keyCode==38)
+		{
+			upKeyPressed();
 		}
 	}
 	function leftKeyPressed() {
@@ -197,6 +204,152 @@ function start()
 						if(((i*110+10+"px")==tiles[x].style.left) && ((row*110+10+"px")==tiles[x].style.top) && target!=i)
 						{
 							tiles[x].style.left=target*110+10+"px";
+							tiles = document.getElementsByClassName('new-tile');
+							if(flag==2)
+							{
+								tiles[x].parentNode.removeChild(tiles[x]);
+							}
+							loop_ran=99; //indication that this loop ran once
+							break;
+						}
+					}
+				}
+			}
+			console.log(loop_ran);
+			if(loop_ran==99)
+				setTimeout(createTile, 400);
+			for(var i=0; i<4; i++)
+			{
+				var str="";
+				for(var j=0; j<4; j++)
+				{
+					str+=grid[j][i]+", ";
+				}
+				console.log(str+"\n");
+			}
+	}
+	function downKeyPressed() {
+		loop_ran=0;
+			for(var col=0; col<4; col++)
+			{
+				for(var i=2; i>=0; i--)
+				{
+					var target=i;
+					var flag=0;
+					if(grid[col][i]!=0)
+					{
+						for(j=i; j<3; j++)
+						{
+							if(grid[col][j+1]==0)
+							{
+								target=j+1;
+								flag=1;
+							}
+							else if(grid[col][j+1]==grid[col][i])
+							{
+								target=j+1;
+								flag=2;
+								break;
+							}
+							else
+								break;
+						}
+						if(flag==1)
+						{
+							grid[col][target]=grid[col][i];
+							grid[col][i]=0;
+						}
+						else if(flag==2)
+						{
+							grid[col][target]=grid[col][i]*2;
+							grid[col][i]=0;
+							for(k=0; k<tiles.length; k++)
+							{
+								if(((col*110+10+"px")==tiles[k].style.left) && ((target*110+10+"px")==tiles[k].style.top))
+								{
+									tiles[k].innerHTML=grid[col][target];
+								}
+							}
+						}
+					}
+					for(x=0; x<tiles.length; x++)
+					{
+						if(((col*110+10+"px")==tiles[x].style.left) && ((i*110+10+"px")==tiles[x].style.top) && target!=i)
+						{
+							tiles[x].style.top=target*110+10+"px";
+							tiles = document.getElementsByClassName('new-tile');
+							if(flag==2)
+							{
+								tiles[x].parentNode.removeChild(tiles[x]);
+							}
+							loop_ran=99; //indication that this loop ran once
+							break;
+						}
+					}
+				}
+			}
+			console.log(loop_ran);
+			if(loop_ran==99)
+				setTimeout(createTile, 400);
+			for(var i=0; i<4; i++)
+			{
+				var str="";
+				for(var j=0; j<4; j++)
+				{
+					str+=grid[j][i]+", ";
+				}
+				console.log(str+"\n");
+			}
+	}
+	function upKeyPressed() {
+		loop_ran=0;
+			for(var col=0; col<4; col++)
+			{
+				for(var i=1; i<=3; i++)
+				{
+					var target=i;
+					var flag=0;
+					if(grid[col][i]!=0)
+					{
+						for(j=i; j>0; j--)
+						{
+							if(grid[col][j-1]==0)
+							{
+								target=j-1;
+								flag=1;
+							}
+							else if(grid[col][j-1]==grid[col][i])
+							{
+								target=j-1;
+								flag=2;
+								break;
+							}
+							else
+								break;
+						}
+						if(flag==1)
+						{
+							grid[col][target]=grid[col][i];
+							grid[col][i]=0;
+						}
+						else if(flag==2)
+						{
+							grid[col][target]=grid[col][i]*2;
+							grid[col][i]=0;
+							for(k=0; k<tiles.length; k++)
+							{
+								if(((col*110+10+"px")==tiles[k].style.left) && ((target*110+10+"px")==tiles[k].style.top))
+								{
+									tiles[k].innerHTML=grid[col][target];
+								}
+							}
+						}
+					}
+					for(x=0; x<tiles.length; x++)
+					{
+						if(((col*110+10+"px")==tiles[x].style.left) && ((i*110+10+"px")==tiles[x].style.top) && target!=i)
+						{
+							tiles[x].style.top=target*110+10+"px";
 							tiles = document.getElementsByClassName('new-tile');
 							if(flag==2)
 							{
