@@ -52,7 +52,7 @@ function start()
 		gamebox.appendChild(div);
 		div.style.top = y*110+10+"px";
 		div.style.left = x*110+10+"px";
-		div.className='new-tile';
+		div.className='new-tile new';
 		var dig = parseInt(Math.random()*(3-1)+1)*2;
 		div.innerHTML+=dig;
 		colorize(tiles.length-1);
@@ -99,6 +99,12 @@ function start()
 							{
 								target=j-1;
 								flag=2;
+								break;
+							}
+							else if(grid[j-1][row]==1)
+							{
+								target=j-1;
+								flag=1;
 								break;
 							}
 							else
@@ -177,6 +183,12 @@ function start()
 								flag=2;
 								break;
 							}
+							else if(grid[j+1][row]==1)
+							{
+								target=j+1;
+								flag=1;
+								break;
+							}
 							else
 								break;
 						}
@@ -243,6 +255,12 @@ function start()
 							{
 								target=j+1;
 								flag=2;
+								break;
+							}
+							else if(grid[col][j+1]==1)
+							{
+								target=j+1;
+								flag=1;
 								break;
 							}
 							else
@@ -313,6 +331,12 @@ function start()
 								flag=2;
 								break;
 							}
+							else if(grid[col][j-1]==1)
+							{
+								target=j-1;
+								flag=1;
+								break;
+							}
 							else
 								break;
 						}
@@ -360,7 +384,10 @@ function start()
 	}
 	function removeClass() {
 		for(k=0; k<tiles.length; k++)
-			tiles[k].className="new-tile";
+		{
+			tiles[k].classList.remove('anim');
+			tiles[k].classList.remove('new');
+		}
 	}
 	function colorize(k) {
 		if(tiles[k].innerHTML==2)
