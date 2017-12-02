@@ -5,6 +5,7 @@ function start()
 	var tiles = document.getElementsByClassName('new-tile');
 	var score_div = document.getElementsByClassName('score')[0];
 	var score=0;
+	var countclass=0;
 	score_div.innerHTML=score;
 	
 	document.addEventListener("keydown", keydownFunc);
@@ -52,12 +53,13 @@ function start()
 
 			// create new div
 			var div = document.createElement('div')
-			gamebox.appendChild(div);
 			div.style.top = y*110+10+"px";
 			div.style.left = x*110+10+"px";
-			div.className='new-tile new';
+			div.className='new-tile new tile'+countclass;
+			countclass++;
 			var dig = parseInt(Math.random()*(3-1)+1)*2;
 			div.innerHTML+=dig;
+			gamebox.appendChild(div);
 			colorize(tiles.length-1);
 			// update the grid array
 			grid[x][y]=dig;
@@ -150,6 +152,7 @@ function start()
 							tiles[x].style.left=target*110+10+"px";
 							if(flag==2)
 							{
+								// removeElement(tiles[x].className);
 								tiles[x].parentNode.removeChild(tiles[x]);
 							}
 							loop_ran=99; //indication that this loop ran once
@@ -267,7 +270,7 @@ function start()
 					{
 						for(j=i; j<3; j++)
 						{
-							if(grid[col][j+1]==1 && grid[col][j+1]==grid[col][i])
+							if(grid[col][j+1]==1 && grid[col][j+2]==grid[col][i])
 							{
 								target=j+1;
 								flag=1;
@@ -347,7 +350,7 @@ function start()
 					{
 						for(j=i; j>0; j--)
 						{
-							if(grid[col][j-1]==1 && grid[col][j-1]==grid[col][i])
+							if(grid[col][j-1]==1 && grid[col][j-2]==grid[col][i])
 							{
 								target=j-1;
 								flag=1;
@@ -669,6 +672,11 @@ function start()
 			else
 				return 1;
 	}
+	// function removeElement(classname)
+	// {
+	// 	var elem = document.getElementsByClassName(classname)[0];
+	// 	setTimeout(function() {elem.parentNode.removeChild(elem);}, 300);
+	// }
 	twoRandomBoxes();
 }
 start();
